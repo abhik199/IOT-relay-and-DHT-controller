@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESP_MySQL Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+
+  <body>
+    <div class="cardSection">
+      <h1 class="cardlable1">ESP_MySQL Dashboard</h1>
+      <div class="container">
+        <div class="cardItems">
+          <h1 class="cardlable2">LED Control</h1>
+          <!-- toggle-switch -->
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              name="led1"
+              id="led1"
+              onchange="handleToggle(event)"
+            />
+            <span class="slider"></span>
+            <span class="label-text">LED&nbsp1</span>
+          </label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              name="led2"
+              id="led2"
+              onchange="handleToggle(event)"
+            />
+            <span class="slider"></span>
+            <span class="label-text">LED&nbsp2</span>
+          </label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              name="led3"
+              id="led3"
+              onchange="handleToggle(event)"
+            />
+            <span class="slider"></span>
+            <span class="label-text">LED&nbsp3</span>
+          </label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              name="led4"
+              id="led4"
+              onchange="handleToggle(event)"
+            />
+            <span class="slider"></span>
+            <span class="label-text">LED&nbsp4</span>
+          </label>
+        </div>
+        <div class="cardItems">
+          <h3 style="padding: 20px 0px">DHT11 Data</h3>
+          <div class="gaugeItems">
+            <div class="gauge">
+              <div class="gauge_body">
+                <div class="gauge_fill" id="temperature_fill"></div>
+                <div class="gauge_cover" id="temperature_cover"></div>
+              </div>
+              <div class="gauge_text">TEMPERATURE</div>
+            </div>
+            <div class="gauge">
+              <div class="gauge_body">
+                <div class="gauge_fill" id="humidity_fill"></div>
+                <div class="gauge_cover" id="humidity_cover"></div>
+              </div>
+              <div class="gauge_text">HUMIDITY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mocked initial LED status data
+      const initialLedStatus = {
+        led1: false,
+        led2: true,
+        led3: false,
+        led4: true,
+      };
+
+      // Set initial state of LED switches
+      window.onload = function () {
+        document.getElementById("led1").checked = initialLedStatus.led1;
+        document.getElementById("led2").checked = initialLedStatus.led2;
+        document.getElementById("led3").checked = initialLedStatus.led3;
+        document.getElementById("led4").checked = initialLedStatus.led4;
+      };
+
+      // Handle toggle switch changes
+      function handleToggle(event) {
+        const led = event.target.name;
+        const status = event.target.checked;
+        console.log(`LED ${led} status changed to: ${status}`);
+        // Simulate sending the data to server
+      }
+
+      // Simulate DHT11 data
+      const temperature = 25; // In °C
+      const humidity = 60; // In %
+
+      document.getElementById("temperature_fill").style.height =
+        temperature + "%";
+      document.getElementById("temperature_cover").innerHTML =
+        temperature + "°C";
+      document.getElementById("humidity_fill").style.height = humidity + "%";
+      document.getElementById("humidity_cover").innerHTML = humidity + "%";
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
